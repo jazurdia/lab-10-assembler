@@ -46,7 +46,7 @@ init:
     // GPIO 5 | wPi - 5 | sexto bit
     // GPIO 6 | wPi - 6 | septimo bit
     // GPIO 7 | wPi - 7 | octavo bit
-    // GPIO 8 | wPi - 8 | INPUT
+    // GPIO 21| wPi - 21| INPUT
     // GPIO 25| wPi - 25| INPUT
 
     // setting wpi 0 to 7 as output
@@ -83,13 +83,18 @@ init:
     bl pinMode
 
     // setting wpi 8 as input
-    mov r0, #8 // wpi 8
+    mov r0, #21 // wpi 8
+    mov r1, #0 // AS INPUT
+    bl pinMode
+
+    // setting wpi 8 as input
+    mov r0, #25 // wpi 8
     mov r1, #0 // AS INPUT
     bl pinMode
 
     // waiting for r8 to be 1
     try:
-        mov r0, #8 // wpi 8
+        mov r0, #21 // wpi 21
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
@@ -103,7 +108,7 @@ init:
 
     // waiting for r8 to be 1
     try0:
-        mov r0, #8 // wpi 8
+        mov r0, #21 // wpi 21
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
@@ -120,7 +125,7 @@ init:
 
     // waiting for r8 to be 1
     try1:
-        mov r0, #8 // wpi 8
+        mov r0, #21 // wpi 21
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
@@ -145,7 +150,7 @@ init:
 
     // waiting for r8 to be 1
     try2:
-        mov r0, #8 // wpi 8
+        mov r0, #21 // wpi 8
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
@@ -187,7 +192,7 @@ init:
 
     // waiting for r8 to be 1
     try4:
-        mov r0, #8 // wpi 8
+        mov r0, #21 // wpi 21
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
@@ -204,7 +209,7 @@ init:
 
     // waiting for r8 to be 1
     try5:
-        mov r0, #8 // wpi 8
+        mov r0, #21 // wpi #21
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
@@ -229,7 +234,7 @@ init:
 
     // waiting for r8 to be 1
         try6:
-            mov r0, #8 // wpi 8
+            mov r0, #21 // wpi #21
             mov r1, #0
             bl digitalRead
             cmp r0, #1  
