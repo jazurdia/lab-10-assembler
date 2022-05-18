@@ -1,7 +1,7 @@
 /**
 * Universidad del Valle de Guatemala
-* Laboratorio 9 - Organización de computadoras y Assembler
-* "Corrimiento de bits activos" Temario 1 - Manejo de puertos GPIO
+* Laboratorio 10 - Organización de computadoras y Assembler
+* "Corrimiento de bits activos" Temario 1 - Manejo de puertos GPIO y Sensores
 * Carnets: 21242, 21096, 20289
 **/ 
 
@@ -46,6 +46,7 @@ init:
     // GPIO 5 | wPi - 5 | sexto bit
     // GPIO 6 | wPi - 6 | septimo bit
     // GPIO 7 | wPi - 7 | octavo bit
+    // GPIO 8 | wPi - 8 | INPUT
 
     // setting wpi 0 to 7 as output
     mov r0, #0 // wpi 0
@@ -80,29 +81,53 @@ init:
     mov r1, #1
     bl pinMode
 
+    // setting wpi 8 as input
+    mov r0, #8 // wpi 8
+    mov r1, #0 // AS INPUT
+    bl pinMode
+
+    // waiting for r8 to be 1
+    try:
+        mov r0, #8 // wpi 8
+        mov r1, #0
+        bl digitalRead
+        cmp r0, #1  
+        bne try              // r0 = r8                  
+
 
     // primer estado: wpi 0 "on", todos los demás "off"
     mov r0, #0 // wpi 0 "on"
     mov r1, #1
     bl digitalWrite
 
+    // waiting for r8 to be 1
+    try:
+        mov r0, #8 // wpi 8
+        mov r1, #0
+        bl digitalRead
+        cmp r0, #1  
+        bne try 
     
     // cambio de estado
     mov r0, #1500
     bl delay
 
-    
     // segundo estado: wpi 0 "on" y wpi 1 "on", todos los demás "off"
-
     mov r0, #1 // wpi 1 "on"
     mov r1, #1
     bl digitalWrite
 
+    // waiting for r8 to be 1
+    try:
+        mov r0, #8 // wpi 8
+        mov r1, #0
+        bl digitalRead
+        cmp r0, #1  
+        bne try 
     
     // cambio de estado
     mov r0, #1500
     bl delay
-
 
     // tercer estado: wpi 2 "on", todos los demás "off"
     mov r0, #0 // wpi 0 "off"
@@ -117,22 +142,34 @@ init:
     mov r1, #1
     bl digitalWrite
 
+    // waiting for r8 to be 1
+    try:
+        mov r0, #8 // wpi 8
+        mov r1, #0
+        bl digitalRead
+        cmp r0, #1  
+        bne try 
+
     // cambio de estado
     mov r0, #1500
     bl delay
 
-
     // cuarto estado: wpi 2 "on" y wpi 3 "on", todos los demás "off"
-
-
     mov r0, #3 // wpi 3 "on"
     mov r1, #1
     bl digitalWrite
 
+    // waiting for r8 to be 1
+    try:
+        mov r0, #8 // wpi 8
+        mov r1, #0
+        bl digitalRead
+        cmp r0, #1  
+        bne try
+
     // cambio de estado
     mov r0, #1500
     bl delay
-
 
     // quinto estado: wpi 4 "on", todos los demás "off"
     mov r0, #2 // wpi 2 "off"
@@ -147,23 +184,34 @@ init:
     mov r1, #1
     bl digitalWrite
 
+    // waiting for r8 to be 1
+    try:
+        mov r0, #8 // wpi 8
+        mov r1, #0
+        bl digitalRead
+        cmp r0, #1  
+        bne try 
 
     // cambio de estado
     mov r0, #1500
     bl delay
 
-
     // sexto estado: wpi 4 "on" y wpi 5 "on", todos los demás "off"
-
     mov r0, #5 // wpi 5 "on"
     mov r1, #1
     bl digitalWrite
 
+    // waiting for r8 to be 1
+    try:
+        mov r0, #8 // wpi 8
+        mov r1, #0
+        bl digitalRead
+        cmp r0, #1  
+        bne try 
 
     // cambio de estado
     mov r0, #1500
     bl delay
-
 
     // septimo estado: wpi 6 "on", todos los demás "off"
     mov r0, #4 // wpi 4 "off"
@@ -178,14 +226,18 @@ init:
     mov r1, #1
     bl digitalWrite
 
-
+    // waiting for r8 to be 1
+        try:
+            mov r0, #8 // wpi 8
+            mov r1, #0
+            bl digitalRead
+            cmp r0, #1  
+            bne try 
     // cambio de estado
     mov r0, #1500
     bl delay
 
-
     // octavo estado: wpi 6 "on" y wpi 7 "on", todos los demás "off"
-
     mov r0, #7 // wpi 7 "on"
     mov r1, #1
     bl digitalWrite
