@@ -47,6 +47,7 @@ init:
     // GPIO 6 | wPi - 6 | septimo bit
     // GPIO 7 | wPi - 7 | octavo bit
     // GPIO 8 | wPi - 8 | INPUT
+    // GPIO 25| wPi - 25| INPUT
 
     // setting wpi 0 to 7 as output
     mov r0, #0 // wpi 0
@@ -101,12 +102,12 @@ init:
     bl digitalWrite
 
     // waiting for r8 to be 1
-    try:
+    try0:
         mov r0, #8 // wpi 8
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
-        bne try 
+        bne try0 
     
     // cambio de estado
     mov r0, #1500
@@ -118,12 +119,12 @@ init:
     bl digitalWrite
 
     // waiting for r8 to be 1
-    try:
+    try1:
         mov r0, #8 // wpi 8
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
-        bne try 
+        bne try1
     
     // cambio de estado
     mov r0, #1500
@@ -143,12 +144,12 @@ init:
     bl digitalWrite
 
     // waiting for r8 to be 1
-    try:
+    try2:
         mov r0, #8 // wpi 8
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
-        bne try 
+        bne try2 
 
     // cambio de estado
     mov r0, #1500
@@ -160,12 +161,12 @@ init:
     bl digitalWrite
 
     // waiting for r8 to be 1
-    try:
+    try3:
         mov r0, #8 // wpi 8
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
-        bne try
+        bne try3
 
     // cambio de estado
     mov r0, #1500
@@ -185,12 +186,12 @@ init:
     bl digitalWrite
 
     // waiting for r8 to be 1
-    try:
+    try4:
         mov r0, #8 // wpi 8
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
-        bne try 
+        bne try4
 
     // cambio de estado
     mov r0, #1500
@@ -202,12 +203,12 @@ init:
     bl digitalWrite
 
     // waiting for r8 to be 1
-    try:
+    try5:
         mov r0, #8 // wpi 8
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
-        bne try 
+        bne try5 
 
     // cambio de estado
     mov r0, #1500
@@ -227,12 +228,13 @@ init:
     bl digitalWrite
 
     // waiting for r8 to be 1
-        try:
+        try6:
             mov r0, #8 // wpi 8
             mov r1, #0
             bl digitalRead
             cmp r0, #1  
-            bne try 
+            bne try6 
+    
     // cambio de estado
     mov r0, #1500
     bl delay
@@ -254,6 +256,12 @@ init:
     mov r0, #7 // wpi 7 "off"
     mov r1, #0
     bl digitalWrite
+
+    //Lectura en el wpi 25 para determinar si va a "init" o "end".
+    mov r0, #25				
+	bl 	digitalRead				
+	cmp	r0, #0
+	bne init
 
     b end
 
