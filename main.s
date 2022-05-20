@@ -15,6 +15,7 @@
 .balign 4
 
     error: .asciz "Se ha producido un error.\n"
+    mensaje: .asciz "Funcia"
 
 
 .text
@@ -94,11 +95,16 @@ init:
 
     // waiting for r8 to be 1
     try:
+        
+        ldr r0, =mensaje
+        bl printf
+        
         mov r0, #21 // wpi 21
-        mov r1, #0
+        mov r1, #1
         bl digitalRead
-        cmp r0, #1  
-        bne try              // r0 = r8                  
+        
+        cmp r0, #1 
+        beq try              // r0 = r8                  
 
 
     // primer estado: wpi 0 "on", todos los demás "off"
