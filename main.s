@@ -173,7 +173,7 @@ init:
 
     // waiting for r8 to be 1
     try3:
-        mov r0, #8 // wpi 8
+        mov r0, #21 // wpi 8
         mov r1, #0
         bl digitalRead
         cmp r0, #1  
