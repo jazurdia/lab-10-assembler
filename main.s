@@ -93,7 +93,6 @@ init:
     mov r1, #0 // AS INPUT
     bl pinMode
 
-    // waiting for r8 to be 1
     try:
         
         ldr r0, =mensaje
@@ -112,7 +111,6 @@ init:
     mov r1, #1
     bl digitalWrite
 
-    // waiting for r8 to be 1
     try0:
         mov r0, #21 // wpi 21
         mov r1, #0
@@ -129,7 +127,6 @@ init:
     mov r1, #1
     bl digitalWrite
 
-    // waiting for r8 to be 1
     try1:
         mov r0, #21 // wpi 21
         mov r1, #0
@@ -154,7 +151,6 @@ init:
     mov r1, #1
     bl digitalWrite
 
-    // waiting for r8 to be 1
     try2:
         mov r0, #21 // wpi 8
         mov r1, #0
@@ -171,7 +167,6 @@ init:
     mov r1, #1
     bl digitalWrite
 
-    // waiting for r8 to be 1
     try3:
         mov r0, #21 // wpi 8
         mov r1, #0
@@ -196,7 +191,6 @@ init:
     mov r1, #1
     bl digitalWrite
 
-    // waiting for r8 to be 1
     try4:
         mov r0, #21 // wpi 21
         mov r1, #0
@@ -213,7 +207,6 @@ init:
     mov r1, #1
     bl digitalWrite
 
-    // waiting for r8 to be 1
     try5:
         mov r0, #21 // wpi #21
         mov r1, #0
@@ -238,7 +231,6 @@ init:
     mov r1, #1
     bl digitalWrite
 
-    // waiting for r8 to be 1
         try6:
             mov r0, #21 // wpi #21
             mov r1, #0
