@@ -100,7 +100,9 @@ init:
         bl digitalRead
         
         cmp r0, #0
-        beq try              // r0 = r8                  
+        beq try     
+        mov r0, #1500
+        bl delay         // r0 = r8                  
 
 
     // primer estado: wpi 0 "on", todos los demás "off"
@@ -111,10 +113,10 @@ init:
     // waiting for r8 to be 1
     try0:
         mov r0, #21 // wpi 21
-        mov r1, #0
         bl digitalRead
-        cmp r0, #1  
-        bne try0 
+        
+        cmp r0, #0
+        beq try0
     
     // cambio de estado
     mov r0, #1500
@@ -265,11 +267,14 @@ init:
     bl digitalWrite
 
     //Lectura en el wpi 25 para determinar si va a "init" o "end".
+    
     mov r0, #25				
 	bl 	digitalRead				
 	cmp	r0, #0
 	bne init
-
+    
+    mov r0, #5000
+    bl delay
     b end
 
 end:
